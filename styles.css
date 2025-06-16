@@ -1,0 +1,360 @@
+body {
+    margin: 0;
+    font-family: 'Cambria';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrollbars from background */
+    transition: background 0.5s ease; /* Smooth transition for background */
+}
+
+:root {
+    /* Light Mode Colors */
+    --body-bg-light: linear-gradient(to bottom right, #87CEEB, #B0E0E6, #ADD8E6); /* Light blue sky colors */
+    --converter-bg-light: rgba(255, 255, 255, 0.8);
+    --converter-shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --h1-color-light: #333;
+    --h1-shadow-light: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    --input-bg-light: rgba(255, 255, 255, 0.9);
+    --input-color-light: #333;
+    --input-shadow-light: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    --button-text-color-light: #333; /* Text color for buttons in light mode */
+    --modal-bg-light: linear-gradient(to top left, #e0f7fa, #b2ebf2); /* Very light blue for modal */
+    --modal-shadow-light: 0 15px 40px rgba(0, 0, 0, 0.2);
+    --modal-h2-color-light: #00796B;
+    --modal-h2-shadow-light: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    --converted-temp-color-light: #004d40;
+    --converted-temp-shadow-light: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    --close-button-color-light: #999;
+    --close-button-hover-color-light: #f00;
+    --text-color-light: #333;
+
+    /* Dark Mode Colors (Existing) */
+    --body-bg-dark: linear-gradient(to bottom right, #000814, #091e25, #1c7e8f);
+    --converter-bg-dark: rgba(255, 255, 255, 0.15);
+    --converter-shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --h1-color-dark: #fff;
+    --h1-shadow-dark: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    --input-bg-dark: rgba(255, 255, 255, 0.8);
+    --input-color-dark: #333;
+    --input-shadow-dark: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    --button-text-color-dark: #fff; /* Text color for buttons in dark mode */
+    --modal-bg-dark: linear-gradient(to top left, #a0d9e8, #7cc6de);
+    --modal-shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.5);
+    --modal-h2-color-dark: #004d7f;
+    --modal-h2-shadow-dark: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    --converted-temp-color-dark: #002b4d;
+    --converted-temp-shadow-dark: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    --close-button-color-dark: #666;
+    --close-button-hover-color-dark: #f00;
+    --text-color-dark: #fff;
+}
+
+body.light-mode {
+    color: var(--text-color-light);
+}
+
+body.light-mode .background {
+    background: var(--body-bg-light);
+}
+
+body.light-mode .converter-container {
+    background-color: var(--converter-bg-light);
+    box-shadow: var(--converter-shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Lighter border */
+}
+
+body.light-mode h1 {
+    color: var(--h1-color-light);
+    text-shadow: var(--h1-shadow-light);
+}
+
+body.light-mode .input-group input[type="number"],
+body.light-mode .input-group select {
+    background-color: var(--input-bg-light);
+    color: var(--input-color-light);
+    box-shadow: var(--input-shadow-light);
+}
+
+body.light-mode button {
+    background: var(--body-bg-light); /* Background of the page */
+    box-shadow: var(--button-shadow-light);
+    color: var(--button-text-color-light); /* Text color for buttons */
+}
+
+body.light-mode button:hover {
+    filter: brightness(1.1); /* Slight brighten on hover */
+}
+
+body.light-mode .modal-content {
+    background: var(--modal-bg-light);
+    box-shadow: var(--modal-shadow-light);
+    color: var(--text-color-light);
+    border: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .close-button {
+    color: var(--close-button-color-light);
+}
+
+body.light-mode .close-button:hover,
+body.light-mode .close-button:focus {
+    color: var(--close-button-hover-color-light);
+}
+
+body.light-mode .modal-content h2 {
+    color: var(--modal-h2-color-light);
+    text-shadow: var(--modal-h2-shadow-light);
+}
+
+body.light-mode #convertedTemperature {
+    color: var(--converted-temp-color-light);
+    text-shadow: var(--converted-temp-shadow-light);
+}
+
+body.dark-mode {
+    color: var(--text-color-dark);
+}
+
+body.dark-mode .background {
+    background: var(--body-bg-dark);
+}
+
+body.dark-mode .converter-container {
+    background-color: var(--converter-bg-dark);
+    box-shadow: var(--converter-shadow-dark);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode h1 {
+    color: var(--h1-color-dark);
+    text-shadow: var(--h1-shadow-dark);
+}
+
+body.dark-mode .input-group input[type="number"],
+body.dark-mode .input-group select {
+    background-color: var(--input-bg-dark);
+    color: var(--input-color-dark);
+    box-shadow: var(--input-shadow-dark);
+}
+
+body.dark-mode button {
+    background: var(--body-bg-dark); /* Background of the page */
+    box-shadow: var(--button-shadow-dark);
+    color: var(--button-text-color-dark); /* Text color for buttons */
+}
+
+body.dark-mode button:hover {
+    filter: brightness(1.1); /* Slight brighten on hover */
+}
+
+body.dark-mode .modal-content {
+    background: var(--modal-bg-dark);
+    box-shadow: var(--modal-shadow-dark);
+    color: var(--text-color-dark);
+    border: 3px solid rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .close-button {
+    color: var(--close-button-color-dark);
+}
+
+body.dark-mode .close-button:hover,
+body.dark-mode .close-button:focus {
+    color: var(--close-button-hover-color-dark);
+}
+
+body.dark-mode .modal-content h2 {
+    color: var(--modal-h2-color-dark);
+    text-shadow: var(--modal-h2-shadow-dark);
+}
+
+body.dark-mode #convertedTemperature {
+    color: var(--converted-temp-color-dark);
+    text-shadow: var(--converted-temp-shadow-dark);
+}
+
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: oceanWaves 15s infinite alternate;
+}
+
+@keyframes oceanWaves {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.converter-container {
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+input[type="number"],
+select {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    margin: 0 10px;
+    outline: none;
+}
+
+input[type="number"]::placeholder {
+    color: #888;
+}
+
+button {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Style for the mode toggle button */
+.mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px; /* Smaller padding */
+    font-size: 0.9em; /* Smaller font size */
+    border-radius: 20px; /* More rounded */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Lighter shadow */
+    z-index: 100; /* Ensure it's on top */
+    background-color: transparent; /* Make it transparent */
+    border: 1px solid; /* Add a subtle border */
+    text-transform: capitalize; /* Capitalize the first letter of "light" or "dark" */
+}
+
+/* Specific border colors for toggle button based on mode */
+body.light-mode .mode-toggle {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: var(--button-text-color-light);
+}
+
+body.dark-mode .mode-toggle {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--button-text-color-dark);
+}
+
+.mode-toggle:hover {
+    transform: translateY(-1px); /* Less dramatic hover effect */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default - THIS IS KEY */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    justify-content: center; /* Use flexbox for centering */
+    align-items: center; /* Use flexbox for centering */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Super eye-catching pop */
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+    font-size: 2.8em;
+}
+
+#convertedTemperature {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 30px; /* Space above OK button */
+}
+
+.modal-button {
+    background: linear-gradient(45deg, #28a745, #218838); /* Green for OK button */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #042e36, #2b4554);
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5) translateY(50px);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.05) translateY(-10px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}

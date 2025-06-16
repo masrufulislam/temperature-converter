@@ -199,6 +199,8 @@ body.dark-mode #convertedTemperature {
     backdrop-filter: blur(10px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* For Safari */
     border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 500px; /* Added max-width for better control on larger screens */
+    width: 90%; /* Ensures it's responsive */
 }
 
 h1 {
@@ -211,6 +213,7 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 input[type="number"],
@@ -219,8 +222,10 @@ select {
     border: none;
     border-radius: 8px;
     font-size: 1.1em;
-    margin: 0 10px;
+    margin: 10px; /* Adjusted margin for better spacing on wrap */
     outline: none;
+    flex: 1; /* Allows inputs to grow and shrink */
+    min-width: 150px; /* Ensures inputs don't become too small */
 }
 
 input[type="number"]::placeholder {
@@ -356,5 +361,157 @@ body.dark-mode .mode-toggle {
     }
     100% {
         transform: scale(1) translateY(0);
+    }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets (landscape and portrait) and small desktops */
+@media (max-width: 768px) {
+    .converter-container {
+        padding: 30px;
+        width: 85%; /* Slightly larger width for tablets */
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .input-group {
+        flex-direction: column; /* Stack inputs vertically on tablets */
+        align-items: stretch; /* Stretch items to full width */
+    }
+
+    input[type="number"],
+    select {
+        margin: 8px 0; /* Adjust vertical margin for stacked inputs */
+        font-size: 1em;
+        padding: 10px 15px;
+        min-width: unset; /* Remove min-width when stacked */
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 1.1em;
+        margin-top: 15px; /* Add some space above the button */
+    }
+
+    .mode-toggle {
+        top: 15px;
+        right: 15px;
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+
+    .modal-content {
+        padding: 30px;
+        width: 85%;
+    }
+
+    .modal-content h2 {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+
+    #convertedTemperature {
+        font-size: 2.8em;
+        margin-bottom: 25px;
+    }
+
+    .modal-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+/* Mobile phones (landscape and portrait) */
+@media (max-width: 480px) {
+    body {
+        padding: 15px; /* Add some padding to the body */
+    }
+
+    .converter-container {
+        padding: 20px;
+        width: 95%; /* Almost full width for smaller phones */
+        min-height: unset; /* Allow height to adjust based on content */
+        justify-content: flex-start; /* Align content to the start */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        flex-direction: column; /* Ensure stacked for all mobile */
+        margin-bottom: 15px;
+    }
+
+    input[type="number"],
+    select {
+        margin: 5px 0;
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    button {
+        padding: 10px 25px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    .mode-toggle {
+        top: 10px;
+        right: 10px;
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+
+    .modal-content {
+        padding: 25px;
+        width: 95%;
+        max-width: unset; /* Remove max-width for small screens */
+    }
+
+    .close-button {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    #convertedTemperature {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+
+    .modal-button {
+        padding: 8px 18px;
+        font-size: 0.9em;
+    }
+}
+
+/* Smallest mobile devices */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    input[type="number"],
+    select {
+        font-size: 0.85em;
+    }
+    button {
+        font-size: 0.9em;
+    }
+    .modal-content h2 {
+        font-size: 1.6em;
+    }
+    #convertedTemperature {
+        font-size: 1.8em;
     }
 }
